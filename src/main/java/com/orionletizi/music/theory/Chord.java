@@ -3,10 +3,9 @@ package com.orionletizi.music.theory;
 public class Chord {
 
   private String name;
-  private boolean isNull = false;
 
   private Chord() {
-    isNull = true;
+    // for Jackson
   }
 
   public Chord(String name) {
