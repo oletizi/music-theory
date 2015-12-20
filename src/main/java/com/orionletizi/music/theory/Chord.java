@@ -2,19 +2,15 @@ package com.orionletizi.music.theory;
 
 public class Chord {
 
-  public static final Chord NULL = new Chord();
-  private final String name;
+  private String name;
+  private boolean isNull = false;
 
   private Chord() {
-    name = "null";
+    isNull = true;
   }
 
   public Chord(String name) {
     this.name = name;
-  }
-
-  public boolean isNull() {
-    return "null".equals(name);
   }
 
   @Override
