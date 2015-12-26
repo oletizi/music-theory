@@ -35,4 +35,20 @@ public class TimeSignature {
   public int hashCode() {
     return new HashCodeBuilder().append(beatsPerBar).append(beatUnit).build();
   }
+
+  public int getBeatsPerBar() {
+    return beatsPerBar;
+  }
+
+  public void setBeatsPerBar(int b) {
+    this.beatsPerBar = b;
+  }
+
+  public int getBeatUnit() {
+    return beatUnit;
+  }
+
+  public void setBeatUnit(int b) {
+    this.beatUnit = b;
+  }
 }
