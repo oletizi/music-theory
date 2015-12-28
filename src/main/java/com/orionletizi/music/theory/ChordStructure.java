@@ -1,5 +1,6 @@
 package com.orionletizi.music.theory;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -36,6 +37,20 @@ public class ChordStructure {
   public List<ChordStructureSegment> getSegments() {
     // Note: returns the mutable field for editing purposes.
     return segments;
+  }
+
+  @JsonIgnore
+  public double getBeatLength() {
+    double rv = 0;
+    for (ChordStructureSegment segment : segments) {
+      rv += segment.getBeatCount();
+    }
+    return rv;
+  }
+
+  @JsonIgnore
+  public double getMillisecondLength(final Tempo tempo) {
+    return getBeatLength() * 1000 * 60 / tempo.getBPM();
   }
 
   @Override

@@ -3,12 +3,41 @@ package com.orionletizi.music.theory;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class ChordStructureTest {
+
+  private ChordStructure structure;
+  private ChordStructure structure1;
+
+  @Before
+  public void before() {
+    structure = new ChordStructure();
+    structure.addSegment(new Chord("I"), 8);
+
+    structure1 = new ChordStructure();
+    structure1.addSegment(new Chord("I"), 8);
+  }
+
+  @Test
+  public void testGetBeatLength() throws Exception {
+    assertEquals(8, structure.getBeatLength(), 0);
+  }
+
+  @Test
+  public void testGetMillisecondLength() throws Exception {
+    double bpm = 120;
+    Tempo tempo = Tempo.newTempoFromBPM(bpm);
+
+    final double millis = structure.getMillisecondLength(tempo);
+    final double beats = structure.getBeatLength();
+    
+    assertEquals(60 * 1000 * (beats / bpm), millis, 0);
+  }
 
   @Test
   public void testSerialize() throws Exception {
@@ -26,11 +55,6 @@ public class ChordStructureTest {
 
   @Test
   public void testEquals() throws Exception {
-    final ChordStructure structure = new ChordStructure();
-    structure.addSegment(new Chord("I"), 8);
-
-    final ChordStructure structure1 = new ChordStructure();
-    structure1.addSegment(new Chord("I"), 8);
 
     assertEquals(structure, structure1);
   }
@@ -38,12 +62,6 @@ public class ChordStructureTest {
 
   @Test
   public void testHashcode() throws Exception {
-    final ChordStructure structure = new ChordStructure();
-    structure.addSegment(new Chord("I"), 8);
-
-    final ChordStructure structure1 = new ChordStructure();
-    structure1.addSegment(new Chord("I"), 8);
-
     assertEquals(structure.hashCode(), structure1.hashCode());
   }
 

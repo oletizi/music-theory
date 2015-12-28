@@ -49,7 +49,7 @@ public class Tempo {
     return new Tempo(us);
   }
 
-  public static Tempo newTempoFromBPM(float bpm) {
+  public static Tempo newTempoFromBPM(double bpm) {
     //  1 / bpm                     = min / beat
     // (1 / bpm) * 60 * 1000 * 1000 = us  / beat
     return new Tempo((1 / bpm) * 60 * 1000 * 1000);
