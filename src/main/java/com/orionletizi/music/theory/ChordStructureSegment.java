@@ -8,8 +8,7 @@ public class ChordStructureSegment {
   private Chord chord;
   private double beatCount;
 
-  private ChordStructureSegment() {
-    // for Jackson
+  public ChordStructureSegment() {
   }
 
   public ChordStructureSegment(final Chord chord, final double beatCount) {

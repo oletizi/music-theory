@@ -12,6 +12,10 @@ public class Chord {
     this.name = name;
   }
 
+  public String getName() {
+    return name;
+  }
+
   @Override
   public boolean equals(Object obj) {
     return obj instanceof Chord && name.equals(((Chord) obj).name);

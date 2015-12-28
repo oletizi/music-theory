@@ -14,8 +14,12 @@ public class ChordStructure {
     segments = new ArrayList<>();
   }
 
-  public void addSegment(Chord chord, double beatCount) {
+  public void addSegment(final Chord chord, final double beatCount) {
     segments.add(new ChordStructureSegment(chord, beatCount));
+  }
+
+  public void addSegment(final ChordStructureSegment segment) {
+    segments.add(segment);
   }
 
   public Chord getChordForBeat(double beat) {
@@ -27,6 +31,11 @@ public class ChordStructure {
       }
     }
     return null;
+  }
+
+  public List<ChordStructureSegment> getSegments() {
+    // Note: returns the mutable field for editing purposes.
+    return segments;
   }
 
   @Override
