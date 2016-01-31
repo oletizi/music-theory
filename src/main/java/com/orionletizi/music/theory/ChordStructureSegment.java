@@ -2,6 +2,8 @@ package com.orionletizi.music.theory;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 public class ChordStructureSegment {
 
@@ -47,5 +49,10 @@ public class ChordStructureSegment {
   @Override
   public int hashCode() {
     return new HashCodeBuilder().append(chord).append(beatCount).build();
+  }
+
+  @Override
+  public String toString() {
+    return new ToStringBuilder(this, ToStringStyle.JSON_STYLE).append("chord", chord).append("beatCount", beatCount).build();
   }
 }

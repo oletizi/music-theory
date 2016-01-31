@@ -19,6 +19,8 @@ public class ChordStructureSegmentTest {
 
     final ChordStructureSegment in = mapper.readValue(json, ChordStructureSegment.class);
 
+    System.out.println(segment);
+
     assertEquals(segment, in);
   }
 
