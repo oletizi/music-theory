@@ -21,6 +21,8 @@ public class ChordStructureTest {
 
     structure1 = new ChordStructure();
     structure1.addSegment(new Chord("I"), 8);
+
+    System.out.println(structure);
   }
 
   @Test
