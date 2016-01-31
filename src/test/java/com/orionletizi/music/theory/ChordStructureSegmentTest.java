@@ -10,6 +10,14 @@ import static org.junit.Assert.assertEquals;
 public class ChordStructureSegmentTest {
 
   @Test
+  public void testGetHarmonicRhythm() throws Exception {
+    double beatCount = 4d;
+    final ChordStructureSegment segment = new ChordStructureSegment(new Chord("I"), beatCount);
+    final HarmonicRhythm expected = new HarmonicRhythm(beatCount);
+    assertEquals(expected, segment.getHarmonicRhythm());
+  }
+
+  @Test
   public void testSerialize() throws Exception {
     final ObjectMapper mapper = new ObjectMapper();
     mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);

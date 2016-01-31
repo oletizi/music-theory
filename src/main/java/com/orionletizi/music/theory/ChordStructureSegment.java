@@ -9,6 +9,7 @@ public class ChordStructureSegment {
 
   private Chord chord;
   private double beatCount;
+  private HarmonicRhythm harmonicRhythm;
 
   public ChordStructureSegment() {
   }
@@ -16,6 +17,7 @@ public class ChordStructureSegment {
   public ChordStructureSegment(final Chord chord, final double beatCount) {
     this.chord = chord;
     this.beatCount = beatCount;
+    harmonicRhythm = new HarmonicRhythm(beatCount);
   }
 
   public Chord getChord() {
@@ -54,5 +56,9 @@ public class ChordStructureSegment {
   @Override
   public String toString() {
     return new ToStringBuilder(this, ToStringStyle.JSON_STYLE).append("chord", chord).append("beatCount", beatCount).build();
+  }
+
+  public HarmonicRhythm getHarmonicRhythm() {
+    return harmonicRhythm;
   }
 }

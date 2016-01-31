@@ -1,5 +1,8 @@
 package com.orionletizi.music.theory;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * <p>Harmonic rhythm is the beatsPerChord at which chords change in relation to the beatsPerChord of notes:</p>
  * <blockquote>
@@ -10,7 +13,12 @@ package com.orionletizi.music.theory;
  */
 public class HarmonicRhythm {
 
+  @JsonProperty
   private double beatsPerChord;
+
+  public HarmonicRhythm() {
+    // for Jackson
+  }
 
   /**
    * Creates a new HarmonicRhythm
@@ -25,6 +33,7 @@ public class HarmonicRhythm {
   /**
    * @return the number of beats per chord
    */
+  @JsonIgnore
   public double getBeatsPerChord() {
     return beatsPerChord;
   }
@@ -32,7 +41,23 @@ public class HarmonicRhythm {
   /**
    * @return the number of chords per beat
    */
+  @JsonIgnore
   public double getChordsPerBeat() {
     return 1 / beatsPerChord;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    boolean rv = false;
+    if (obj instanceof HarmonicRhythm) {
+      HarmonicRhythm that = (HarmonicRhythm) obj;
+      rv = this.beatsPerChord == that.beatsPerChord;
+    }
+    return rv;
+  }
+
+  @Override
+  public int hashCode() {
+    return (int) beatsPerChord;
   }
 }
