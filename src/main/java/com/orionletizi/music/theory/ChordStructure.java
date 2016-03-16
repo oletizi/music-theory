@@ -1,28 +1,18 @@
 package com.orionletizi.music.theory;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class ChordStructure {
-
-  private final List<ChordStructureSegment> segments;
+public class ChordStructure extends TimeStructure<ChordStructureSegment> {
 
   public ChordStructure() {
-    segments = new ArrayList<>();
+    super();
   }
 
   public void addSegment(final Chord chord, final double beatCount) {
-    segments.add(new ChordStructureSegment(chord, beatCount));
-  }
-
-  public void addSegment(final ChordStructureSegment segment) {
-    segments.add(segment);
+    addSegment(new ChordStructureSegment(chord, beatCount));
   }
 
   public Chord getChordForBeat(double beat) {
@@ -34,25 +24,6 @@ public class ChordStructure {
       }
     }
     return null;
-  }
-
-  public List<ChordStructureSegment> getSegments() {
-    // Note: returns the mutable field for editing purposes.
-    return segments;
-  }
-
-  @JsonIgnore
-  public double getBeatLength() {
-    double rv = 0;
-    for (ChordStructureSegment segment : segments) {
-      rv += segment.getBeatCount();
-    }
-    return rv;
-  }
-
-  @JsonIgnore
-  public double getMillisecondLength(final Tempo tempo) {
-    return getBeatLength() * 1000 * 60 / tempo.getBPM();
   }
 
   @Override

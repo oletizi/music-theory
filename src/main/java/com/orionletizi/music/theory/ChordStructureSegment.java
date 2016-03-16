@@ -5,10 +5,9 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class ChordStructureSegment {
+public class ChordStructureSegment extends TimeStructureSegment {
 
   private Chord chord;
-  private double beatCount;
   private HarmonicRhythm harmonicRhythm;
 
   public ChordStructureSegment() {
@@ -28,14 +27,6 @@ public class ChordStructureSegment {
     this.chord = chord;
   }
 
-  public double getBeatCount() {
-    return beatCount;
-  }
-
-  public void setBeatCount(final double beatCount) {
-    this.beatCount = beatCount;
-  }
-
   @Override
   public boolean equals(Object obj) {
     boolean rv = false;
@@ -43,19 +34,19 @@ public class ChordStructureSegment {
       final ChordStructureSegment that = (ChordStructureSegment) obj;
       rv = new EqualsBuilder()
           .append(chord, that.chord)
-          .append(beatCount, that.beatCount).isEquals();
+          .append(getBeatCount(), that.getBeatCount()).isEquals();
     }
     return rv;
   }
 
   @Override
   public int hashCode() {
-    return new HashCodeBuilder().append(chord).append(beatCount).build();
+    return new HashCodeBuilder().append(chord).append(getBeatCount()).build();
   }
 
   @Override
   public String toString() {
-    return new ToStringBuilder(this, ToStringStyle.JSON_STYLE).append("chord", chord).append("beatCount", beatCount).build();
+    return new ToStringBuilder(this, ToStringStyle.JSON_STYLE).append("chord", chord).append("beatCount", getBeatCount()).build();
   }
 
   public HarmonicRhythm getHarmonicRhythm() {
