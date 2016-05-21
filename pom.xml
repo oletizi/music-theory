@@ -66,6 +66,11 @@
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>org.jfugue</groupId>
+            <artifactId>jfugue</artifactId>
+            <version>5.0.4</version>
+        </dependency>
         <!-- Test stuff -->
         <dependency>
             <groupId>junit</groupId>
