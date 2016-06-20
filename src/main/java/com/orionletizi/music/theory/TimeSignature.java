@@ -11,6 +11,12 @@ public class TimeSignature {
     // for Jackson
   }
 
+  public TimeSignature(final String sig) {
+    String[] tmp = sig.split("/");
+    beatsPerBar = Integer.parseInt(tmp[0]);
+    beatUnit = Integer.parseInt(tmp[1]);
+  }
+
   public TimeSignature(final int beatsPerBar, final int beatUnit) {
     this.beatsPerBar = beatsPerBar;
     this.beatUnit = beatUnit;
